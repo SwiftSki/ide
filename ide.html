@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    textarea: {
+      resize: none;
+    }
+
+  </style>
+  <div width="50%" height="5%" style="position:absolute; top:0px; left:0px;">
+    <button onclick="fSwitch('js')">Javascript</button>
+    <button onclick="fSwitch('html')">HTML</button>
+  </div>
+  <div width="50%" height="5%" style="position:absolute; top:0px; left:50%;">
+    <button onclick="run()">run</button>
+  </div>
+
+  <div style="position:absolute; top:5%">
+    <textarea rows="38" cols="80" class="code" id="js" autofocus>//code here!</textarea>
+    <textarea rows="38" cols="80" class="code" id="html" placeholder="leave blank for JS only" hidden></textarea>
+    <textarea rows="38" cols="80" id="console" disabled></textarea>
+  </div>
+  <script>
+    "use strict";
+    try {
+      fetch('./highlight.min.css').then(data => {
+        let stylesheet = document.createElement('style');
+        stylesheet.innerHTML = data;
+        document.head.appendChild(stylesheet);
+      });
+      fetch('./highlight.min.js').then(data => {
+        let script = document.createElement('script');
+        script.innerHTML = data;
+        document.head.appendChild(script);
+      });
+    } catch (err) {
+      console.log('highlight.js files not found\n' + err);
+      try {
+        let stylesheet = document.createElement('link');
+        stylesheet.rel = 'stylesheet';
+        stylesheet.href = "//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.2/build/styles/default.min.css";
+        document.head.appendChild(stylesheet);
+
+        let script = document.createElement('script');
+        script.src = "//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.2/build/highlight.min.js";
+        document.head.appendChild(script);
+      } catch () {
+        alert('you appear to not have neither highlight.js installed nor internet connection');
+      }
+    }
+
+    var page;
+
+    function run() {
+      page = '';
+      page = window.open('', 'MsgWindow', 'height=1000, width=1000');
+      page.console = {
+        log(text) {
+          document.getElementById('console').value += text + '\n';
+        },
+        clear() {
+          document.getElementById('console').value = '';
+        },
+        error(text) {
+          document.getElementById('console').value += 'ERROR: ' + text;
+        }
+      }
+      let main = page.document.createElement('main');
+      main.innerHTML = document.getElementById('html').value;
+      page.document.body.appendChild(main);
+
+      console.clear();
+      page.eval(document.getElementById('js').value);
+      if (document.getElementById('html').value == '') page.close();
+    }
+
+    function fSwitch(dest) {
+      let elements = document.getElementsByClassName('code');
+      for (let i = 0; i < elements.length; i++) {
+        elements[i].hidden = true;
+      }
+      document.getElementById(dest).hidden = false;
+    }
+
+  </script>
+
+</html>
