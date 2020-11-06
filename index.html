@@ -62,8 +62,9 @@
       }
       document.getElementById(dest).hidden = false;
     }
-    window.onerror = err => {
-      alert(err);
+    window.onerror = (message, source, line, col, err) => {
+      alert(message);
+	    page.console.log(`${message}\nat: ${line}:${col} in ${source}\nerror: ${err}`);
     }
   </script>
 
