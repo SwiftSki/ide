@@ -28,9 +28,9 @@
         document.head.appendChild(stylesheet);
       });
       fetch('./highlight.pack.js').then(data => {
-        let script = document.createElement('script');
-        script.innerHTML = data;
-        document.head.appendChild(script);
+        let jscript = document.createElement('script');
+        jscript.innerHTML = data;
+        document.head.appendChild(jscript);
       });
       hljs.initHighlightingOnLoad();
     } catch (err) {
