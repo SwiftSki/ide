@@ -22,30 +22,19 @@
   <script>
     "use strict";
     try {
-      fetch('./highlight.min.css').then(data => {
+      fetch('./tomorrow-night.css').then(data => {
         let stylesheet = document.createElement('style');
         stylesheet.innerHTML = data;
         document.head.appendChild(stylesheet);
       });
-      fetch('./highlight.min.js').then(data => {
+      fetch('./highlight.pack.js').then(data => {
         let script = document.createElement('script');
         script.innerHTML = data;
         document.head.appendChild(script);
       });
+      hljs.initHighlightingOnLoad();
     } catch (err) {
-      console.log('highlight.js files not found\n' + err);
-      try {
-        let stylesheet = document.createElement('link');
-        stylesheet.rel = 'stylesheet';
-        stylesheet.href = "//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.2/build/styles/default.min.css";
-        document.head.appendChild(stylesheet);
-
-        let script = document.createElement('script');
-        script.src = "//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.2/build/highlight.min.js";
-        document.head.appendChild(script);
-      } catch (error) {
-        alert('you appear to not have neither highlight.js installed nor internet connection');
-      }
+      console.log('it looks like you didn\'t download the whole repo.\nhttps://github.com/swiftski/ide\n\n' + err);
     }
 
     var page;
