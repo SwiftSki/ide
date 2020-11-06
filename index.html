@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html onkeyup="update()">
   <head>
     <title>SwiftSki's IDE</title>	
 	  <link rel="stylesheet" href="./codemirror.css" />
@@ -20,8 +20,18 @@
   </div>
   <script>
     "use strict";
-    var page;
-
+    var page, jsEditor, htmlEditor;
+		jsEditor = CodeMirror.fromTextArea(document.getElementById('js'), {
+			lineNumbers: true,
+			matchBrackets: true
+		});
+		htmlEditor = CodeMirror.fromTextArea(document.getElementById('html'), {
+			lineNumbers: true
+		});
+		function update(){
+			jsEditor.save();
+			htmlEditor.save();
+		}
     function run() {
       page = '';
       page = window.open('', 'MsgWindow', 'height=1000, width=1000');
