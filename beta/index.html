@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html onkeyup="update()">
+  <head>
+    <title>SwiftSki's IDE</title>	
+	  <link rel="stylesheet" href="./codemirror.css" />
+    <script src="./codemirror.js"></script>
+  </head>
+  <div width="50%" height="15px" style="position:absolute; top:0px; left:0px;">
+    <button onclick="fSwitch('js')">Javascript</button>
+    <button onclick="fSwitch('html')">HTML</button>
+  </div>
+  <div width="50%" height="15px" style="position:absolute; top:0px; left:50%;">
+    <button onclick="run()">run</button>
+  </div>
+
+  <div style="position:absolute; top:5%">
+    <textarea rows="38" cols="80" class="code js" id="js" autofocus>//code here!</textarea>
+    <textarea rows="38" cols="80" class="code html" id="html" placeholder="leave blank for JS only" hidden></textarea>
+    <textarea rows="38" cols="80" id="console" style="float:right;" disabled></textarea>
+  </div>
+  <script>
+    "use strict";
+    var page, jsEditor, htmlEditor;
+		jsEditor = CodeMirror.fromTextArea(document.getElementById('js'), {
+			lineNumbers: true,
+			matchBrackets: true
+		});
+		htmlEditor = CodeMirror.fromTextArea(document.getElementById('html'), {
+			lineNumbers: true
+		});
+		function update(){
+			jsEditor.save();
+			htmlEditor.save();
+		}
+    function run() {
+      page = '';
+      page = window.open('', 'MsgWindow', 'height=1000, width=1000');
+      page.console = {
+        log(text) {
+          document.getElementById('console').value += text + '\n';
+        },
+        clear() {
+          document.getElementById('console').value = '';
+        },
+        error(text) {
+          document.getElementById('console').value += 'ERROR: ' + text;
+        }
+      }
+      let main = page.document.createElement('main');
+      main.innerHTML = document.getElementById('html').value;
+      page.document.body.appendChild(main);
+
+      page.console.clear();
+      page.eval(document.getElementById('js').value);
+      if (document.getElementById('html').value == '') page.close();
+    }
+
+    function fSwitch(dest) {
+      let elements = document.getElementsByClassName('code');
+      for (let i = 0; i < elements.length; i++) {
+        elements[i].hidden = true;
+      }
+      document.getElementById(dest).hidden = false;
+    }
+    window.onerror = (message, source, line, col, err) => {
+      alert(message);
+	    page.console.log(`${message}\nat: ${line}:${col} in ${source}`);
+    }
+  </script>
+
+</html>
