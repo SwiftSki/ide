@@ -43,7 +43,7 @@
         let script = document.createElement('script');
         script.src = "//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.2/build/highlight.min.js";
         document.head.appendChild(script);
-      } catch () {
+      } catch (error) {
         alert('you appear to not have neither highlight.js installed nor internet connection');
       }
     }
