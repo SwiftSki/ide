@@ -43,7 +43,7 @@
       main.innerHTML = document.getElementById('html').value;
       page.document.body.appendChild(main);
 
-      console.clear();
+      page.console.clear();
       page.eval(document.getElementById('js').value);
       if (document.getElementById('html').value == '') page.close();
     }
