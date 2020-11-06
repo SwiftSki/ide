@@ -4,12 +4,6 @@
     <title>SwiftSki's IDE</title>
     <link rel="stylesheet" href="./tomorrow-night.css">
     <script src="./highlight.pack.js"></script>
-    <style>
-      textarea: {
-        resize: none;
-      }
-
-    </style>  
   </head>
   <div width="50%" height="5%" style="position:absolute; top:0px; left:0px;">
     <button onclick="fSwitch('js')">Javascript</button>
@@ -20,8 +14,10 @@
   </div>
 
   <div style="position:absolute; top:5%">
-    <textarea rows="38" cols="80" class="code js" id="js" autofocus>//code here!</textarea>
-    <textarea rows="38" cols="80" class="code html" id="html" placeholder="leave blank for JS only" hidden></textarea>
+    <!--<textarea rows="38" cols="80" class="code js" id="js" autofocus>//code here!</textarea>
+    <textarea rows="38" cols="80" class="code html" id="html" placeholder="leave blank for JS only" hidden></textarea>-->
+    <pre height="100%" width="50%"><code id="js" class="js" contenteditable="true">//code here!</code></pre>
+    <pre height="100%" width="50%"><code id="html" class="html" contenteditable="true"></code></pre hidden>
     <textarea rows="38" cols="80" id="console" disabled></textarea>
   </div>
   <script>
