@@ -2,8 +2,7 @@
 <html>
   <head>
     <title>SwiftSki's IDE</title>
-    <link rel="stylesheet" href="./tomorrow-night.css">
-    <script src="./highlight.pack.js"></script>
+    <script src="./highlight.js"></script>
   </head>
   <div width="50%" height="15px" style="position:absolute; top:0px; left:0px;">
     <button onclick="fSwitch('js')">Javascript</button>
@@ -16,7 +15,7 @@
   <div style="position:absolute; top:5%">
     <textarea rows="38" cols="80" class="code js" id="js" autofocus>//code here!</textarea>
     <textarea rows="38" cols="80" class="code html" id="html" placeholder="leave blank for JS only" hidden></textarea>
-    <textarea rows="38" cols="80" id="console" style="float:left;" disabled></textarea>
+    <textarea rows="38" cols="80" id="console" style="float:right;" disabled></textarea>
   </div>
   <script>
     "use strict";
