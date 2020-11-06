@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <style>
-    textarea: {
-      resize: none;
-    }
+  <head>
+    <title>SwiftSki's IDE</title>
+    <link rel="stylesheet" href="./tomorrow-night.css">
+    <script src="./highlight.pack.js"></script>
+    <style>
+      textarea: {
+        resize: none;
+      }
 
-  </style>
+    </style>  
+  </head>
   <div width="50%" height="5%" style="position:absolute; top:0px; left:0px;">
     <button onclick="fSwitch('js')">Javascript</button>
     <button onclick="fSwitch('html')">HTML</button>
@@ -21,17 +26,6 @@
   </div>
   <script>
     "use strict";
-    try {
-      fetch('./tomorrow-night.css').then(data => {
-        let stylesheet = document.createElement('style');
-        stylesheet.innerHTML = data;
-        document.head.appendChild(stylesheet);
-      });
-      fetch('./highlight.pack.js').then(data => {
-        let jscript = document.createElement('script');
-        jscript.innerHTML = data;
-        document.head.appendChild(jscript);
-      });
       hljs.initHighlightingOnLoad();
     } catch (err) {
       console.log('it looks like you didn\'t download the whole repo.\nhttps://github.com/swiftski/ide\n\n' + err);
