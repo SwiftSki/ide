@@ -18,11 +18,11 @@
     <textarea rows="38" cols="80" class="code html" id="html" placeholder="leave blank for JS only" hidden></textarea>-->
     <pre height="100%" width="50%"><code id="js" class="js" contenteditable="true">//code here!</code></pre>
     <pre height="100%" width="50%" hidden><code id="html" class="html" contenteditable="true"></code></pre>
-    <textarea rows="38" cols="80" id="console" float="left" disabled></textarea>
+    <textarea rows="38" cols="80" id="console" float="right" disabled></textarea>
   </div>
   <script>
     "use strict";
-    while(document.getElementById('html').innerHTML.split('<').length * 10 < window.innerHeight - 15){
+    while(document.getElementById('html').innerHTML.split('<').length * 20 < window.innerHeight - 15){
       document.getElementById('html').innerHTML += '<br>';
       document.getElementById('js').innerHTML += '<br>';
     }
