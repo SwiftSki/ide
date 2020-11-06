@@ -2,8 +2,8 @@
 <html onkeyup="update()">
   <head>
     <title>SwiftSki's IDE</title>	
-	  <link rel="stylesheet" href="./codemirror.css" />
-    <script src="./codemirror.js"></script>
+	  <!--<link rel="stylesheet" href="./codemirror.css" />
+    <script src="./codemirror.js"></script>-->
   </head>
   <div width="50%" height="15px" style="position:absolute; top:0px; left:0px;">
     <button onclick="fSwitch('js')">Javascript</button>
@@ -21,16 +21,16 @@
   <script>
     "use strict";
     var page, jsEditor, htmlEditor;
-		jsEditor = CodeMirror.fromTextArea(document.getElementById('js'), {
+		/*jsEditor = CodeMirror.fromTextArea(document.getElementById('js'), {
 			lineNumbers: true,
 			matchBrackets: true
 		});
 		htmlEditor = CodeMirror.fromTextArea(document.getElementById('html'), {
 			lineNumbers: true
-		});
+		});*/
 		function update(){
-			jsEditor.save();
-			htmlEditor.save();
+			//jsEditor.save();
+			//htmlEditor.save();
 		}
     function run() {
       page = '';
