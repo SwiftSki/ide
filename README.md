@@ -1,2 +1,2 @@
 # ide
-browser-based single player ide
+browser-based javascript/html IDE
